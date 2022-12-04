@@ -5,7 +5,7 @@
 // i < argc -> str-cap , i++
 
 
-#include<unistd.h>
+#include <unistd.h>
 
 void rstr (char *str)
 {
@@ -15,30 +15,27 @@ void rstr (char *str)
     {
         if (str[i] >= 'A' && str[i] <= 'Z')
             str[i] += 32;
-        if (str[i +1] == '\0' || str[i + 1] == ' ' || str[i + 1] == '\t')
-        {
-            if(str[i] >= 'a' && str[i] <= 'z')
-                str[i] -=32;
-        }
-            write (1, &str[i], 1);
+        if ((str[i] >= 'a' && str[i] <= 'z') && (str[i + 1] == ' ' || str[i +1] == '\0' ))
+           str[i] -= 32;
+        write (1, &str[i] , 1);
         i++;
     }
+   
 
 }
 
-int main (int argc, char **argv)
+int main (int argc, char** argv)
 {
-    int i = 1;
-    if (i < argc)
+    int j = 1;
+    if (argc > j)
     {
-        while(argv[i])
+        while(argv[j])
         {
-            rstr(argv[i]);
+            rstr(argv[j]);
             write(1, "\n", 1);
-            i++;
+            j++;
         }
     }
     else
         write(1, "\n", 1);
-    return (0);
 }
