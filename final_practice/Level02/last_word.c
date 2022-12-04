@@ -1,30 +1,26 @@
 #include <unistd.h>
 
-void last_word (char *str)
+
+int main (int argc, char ** argv)
 {
     int i = 0;
-    int j = 0;
+    char *lastWord;
 
-    while(str[i])
+    if(argc == 2)
     {
-        if(str[i] == ' ' && str[i + 1] >= 33 && str[i + 1] <= 126)
-            j = i + 1;
-        i++;
-    }
-    while(str[j] >= 33 && str[j] <= 126)
-    {
-        write(1, &str[j], 1);
-        j++;
-    }
-}
-
-int main (int argc, char **argv)
-{
-
-    if (argc == 2)
-    {
-        last_word(argv[1]);
+        while(argv[1][i])
+        {
+            if(argv[1][i]<= 32 && argv[1][i+1] > 32)
+                lastWord = &argv[1][i+1];
+            i++;
+        }
+        i = 0;
+        while (lastWord && lastWord[i] > 32)
+        {
+            write(1, &lastWord[i], 1);
+            i++;
+        }
     }
     write(1, "\n", 1);
-    return(0);
+
 }
