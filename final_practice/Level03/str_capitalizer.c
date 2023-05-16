@@ -10,10 +10,12 @@
 void str_cap(char *str)
 {
     int i = 0;
+	//first letter
     if (str[i] >= 'a' && str[i] <= 'z')
 		str[i] -= 32;
 	write(1, &str[i], 1);
     i++;
+	//afterwards
     while (str[i])
     {
         if(str[i] >= 'A' && str[i] <= 'Z')
@@ -29,6 +31,7 @@ void str_cap(char *str)
 int main (int argc, char **argv)
 {
     int i = 1;
+	//run through all the arguments
     while (i < argc)
     {
         str_cap(argv[i]);
