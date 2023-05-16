@@ -10,6 +10,10 @@
 void str_cap(char *str)
 {
     int i = 0;
+    if (str[i] >= 'a' && str[i] <= 'z')
+		str[i] -= 32;
+	write(1, &str[i], 1);
+    i++;
     while (str[i])
     {
         if(str[i] >= 'A' && str[i] <= 'Z')
