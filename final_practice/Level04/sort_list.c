@@ -1,6 +1,19 @@
-#include <stdlib.h>
+
+// #include <unistd.h>
+// typedef struct s_list t_list;
+
+// struct s_list
+// {
+// 	int     data;
+// 	t_list  *next;
+// };
+
+// int ascending(int a, int b)
+// {
+// 	return (a <= b);
+// }
+
 #include "list.h"
-#include <stdio.h>
 
 t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
 {
@@ -8,65 +21,53 @@ t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
     t_list *temp;
 
     temp = lst;
-    while (lst->next != NULL)
+
+    while (lst->next)
     {
-        if (((*cmp)(lst->data, lst->next->data)) ==0)
+
+        if ((*cmp) (lst->data, lst->next->data)== 0)
         {
             swap = lst->data;
             lst->data = lst->next->data;
             lst->next->data = swap;
+
             lst = temp;
+		//After swapping, we go back to the beginning of our list by setting "lst" to the "temp" value.
+            	//we need to start comparing numbers from the beginning again. 
+
         }
         else
             lst = lst->next;
+	    // to move forward in the list
     }
     lst = temp;
     return (lst);
 }
 
 
-/*
+// #include <stdio.h>
+// int main() {
+//     // Create some sample data for our list
+//     t_list node1, node2, node3;
+//     node1.data = 3;
+//     node2.data = 1;
+//     node3.data = 2;
 
-int ascending(int a, int b)
-{
-	return (a <= b);
-}
+//     // Connect the nodes together to form a list
+//     node1.next = &node2;
+//     node2.next = &node3;
+//     node3.next = NULL;
 
-int	main(void)
-{
-	t_list *c = malloc(sizeof(t_list));
-	c->next = 0;
-	c->data = 45;
+//     // Call the sort_list function to sort the list
+//     t_list *sortedList = sort_list(&node1, ascending);
 
-	t_list *b = malloc(sizeof(t_list));
-	b->next = c;
-	b->data = 73;
+//     // Print the sorted list
+//     t_list *current = sortedList;
+//     while (current != NULL) {
+//         printf("%d ", current->data);
+//         current = current->next;
+//     }
+//     printf("\n");
 
-	t_list *a = malloc(sizeof(t_list));
-	a->next = b;
-	a->data = 108;
-
-	t_list *cur = a;
-	while (cur)
-	{
-		printf("%d", cur->data);
-		if (cur->next != 0)
-			printf(", ");
-		cur = cur->next;
-	}
-	printf("\n");
-
-	cur = sort_list(a, ascending);
-
-	// cur = a;
-	while (cur)
-	{
-		printf("%d", cur->data);
-		if (cur->next != 0)
-			printf(", ");
-		cur = cur->next;
-	}
-	printf("\n");
-}
-
-*/
+//     return 0;
+// }
