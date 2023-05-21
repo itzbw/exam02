@@ -15,7 +15,7 @@ int *ft_union (char *str, int *arr)
 
 int main (int argc, char **argv)
 {
-    int i [260];
+    int i [10000000];
 
     if (argc == 3)
     {
